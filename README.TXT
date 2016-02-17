@@ -1,5 +1,5 @@
 【ソフト名】 TTPowerBase
-【著作権者】 Copyright (C) 2014-2016 tapetums
+【著作権者】 Copyright (C) 2016 tapetums
 【種　　別】 TTBase プラグイン
 【動作環境】 Windows Vista/7/8/8.1/10 32/64-bit
 【開発環境】 Visual Studio Community 2015
