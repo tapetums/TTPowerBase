@@ -163,7 +163,7 @@ bool EnableShutDown()
 //---------------------------------------------------------------------------//
 
 // TTBEvent_Init() の内部実装
-BOOL Init()
+BOOL WINAPI Init()
 {
     return TRUE;
 }
@@ -171,14 +171,14 @@ BOOL Init()
 //---------------------------------------------------------------------------//
 
 // TTBEvent_Unload() の内部実装
-void Unload()
+void WINAPI Unload()
 {
 }
 
 //---------------------------------------------------------------------------//
 
 // TTBEvent_Execute() の内部実装
-BOOL Execute(INT32 CmdId, HWND)
+BOOL WINAPI Execute(INT32 CmdId, HWND)
 {
     INT_PTR ret;
 
@@ -239,7 +239,7 @@ BOOL Execute(INT32 CmdId, HWND)
 //---------------------------------------------------------------------------//
 
 // TTBEvent_WindowsHook() の内部実装
-void Hook(UINT, WPARAM, LPARAM)
+void WINAPI Hook(UINT, WPARAM, LPARAM)
 {
 }
 
