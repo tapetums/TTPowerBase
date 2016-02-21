@@ -36,6 +36,15 @@ NYSL Version 0.9982 です。このプラグラムを使用したことによる
 http://www.kmonos.net/nysl/
 
 
+【謝辞】
+TTBase を生み出された K2 さん、peach を 公開されている U さん、TTBaseCpp の作者さんを始め、
+数多くのプラグインを作られたそれぞれの作者さんたちに深い敬意と感謝を表します。
+https://osdn.jp/projects/ttbase/
+http://seesaawiki.jp/ttbase/d/
+http://white2.php.xdomain.jp/?page_id=27
+http://ttbase.coresv.com/uploader/
+
+
 【更新履歴】
 2016.02.21 v0.2.0.0
  ・ダイアログを前面に出すよう改良
