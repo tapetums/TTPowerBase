@@ -178,8 +178,10 @@ void WINAPI Unload()
 //---------------------------------------------------------------------------//
 
 // TTBEvent_Execute() の内部実装
-BOOL WINAPI Execute(INT32 CmdId, HWND)
+BOOL WINAPI Execute(INT32 CmdId, HWND hwnd)
 {
+    ::SetForegroundWindow(hwnd);
+
     INT_PTR ret;
 
     switch ( CmdId )
