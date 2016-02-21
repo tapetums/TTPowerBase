@@ -49,54 +49,54 @@ DWORD COMMAND_COUNT { CMD_COUNT };
 PLUGIN_COMMAND_INFO g_cmd_info[] =
 {
     {
-        TEXT("Shutdown"),       // コマンド名（英名）
-        TEXT("シャットダウン"), // コマンド説明（日本語）
-        CMD_SHUTDOWN,           // コマンドID
-        0,                      // Attr（未使用）
-        -1,                     // ResTd(未使用）
-        dmHotKeyMenu,           // DispMenu
-        0,                      // TimerInterval[msec] 0で使用しない
-        0                       // TimerCounter（未使用）
+        TEXT("Shutdown"),                    // コマンド名（英名）
+        TEXT("シャットダウン"),              // コマンド説明（日本語）
+        CMD_SHUTDOWN,                        // コマンドID
+        0,                                   // Attr（未使用）
+        -1,                                  // ResTd(未使用）
+        DISPMENU(dmToolMenu | dmHotKeyMenu), // DispMenu
+        0,                                   // TimerInterval[msec] 0で使用しない
+        0                                    // TimerCounter（未使用）
     },
     {
-        TEXT("Restart"), // コマンド名（英名）
-        TEXT("再起動"),  // コマンド説明（日本語）
-        CMD_REBBOT,      // コマンドID
-        0,               // Attr（未使用）
-        -1,              // ResTd(未使用）
-        dmHotKeyMenu,    // DispMenu
-        0,               // TimerInterval[msec] 0で使用しない
-        0                // TimerCounter（未使用）
+        TEXT("Restart"),                     // コマンド名（英名）
+        TEXT("再起動"),                      // コマンド説明（日本語）
+        CMD_REBBOT,                          // コマンドID
+        0,                                   // Attr（未使用）
+        -1,                                  // ResTd(未使用）
+        DISPMENU(dmToolMenu | dmHotKeyMenu), // DispMenu
+        0,                                   // TimerInterval[msec] 0で使用しない
+        0                                    // TimerCounter（未使用）
     },
     {
-        TEXT("Sign out"),     // コマンド名（英名）
-        TEXT("サインアウト"), // コマンド説明（日本語）
-        CMD_LOGOFF,           // コマンドID
-        0,                    // Attr（未使用）
-        -1,                   // ResTd(未使用）
-        dmHotKeyMenu,         // DispMenu
-        0,                    // TimerInterval[msec] 0で使用しない
-        0                     // TimerCounter（未使用）
+        TEXT("Sign out"),                    // コマンド名（英名）
+        TEXT("サインアウト"),                // コマンド説明（日本語）
+        CMD_LOGOFF,                          // コマンドID
+        0,                                   // Attr（未使用）
+        -1,                                  // ResTd(未使用）
+        DISPMENU(dmToolMenu | dmHotKeyMenu), // DispMenu
+        0,                                   // TimerInterval[msec] 0で使用しない
+        0                                    // TimerCounter（未使用）
     },
     {
-        TEXT("Sleep"),    // コマンド名（英名）
-        TEXT("スリープ"), // コマンド説明（日本語）
-        CMD_SLEEP,        // コマンドID
-        0,                // Attr（未使用）
-        -1,               // ResTd(未使用）
-        dmHotKeyMenu,     // DispMenu
-        0,                // TimerInterval[msec] 0で使用しない
-        0                 // TimerCounter（未使用）
+        TEXT("Sleep"),                       // コマンド名（英名）
+        TEXT("スリープ"),                    // コマンド説明（日本語）
+        CMD_SLEEP,                           // コマンドID
+        0,                                   // Attr（未使用）
+        -1,                                  // ResTd(未使用）
+        DISPMENU(dmToolMenu | dmHotKeyMenu), // DispMenu
+        0,                                   // TimerInterval[msec] 0で使用しない
+        0                                    // TimerCounter（未使用）
     },
     {
-        TEXT("Hibernate"),  // コマンド名（英名）
-        TEXT("休止状態"),   // コマンド説明（日本語）
-        CMD_HIBERNATE,      // コマンドID
-        0,                  // Attr（未使用）
-        -1,                 // ResTd(未使用）
-        dmHotKeyMenu,       // DispMenu
-        0,                  // TimerInterval[msec] 0で使用しない
-        0                   // TimerCounter（未使用）
+        TEXT("Hibernate"),                   // コマンド名（英名）
+        TEXT("休止状態"),                    // コマンド説明（日本語）
+        CMD_HIBERNATE,                       // コマンドID
+        0,                                   // Attr（未使用）
+        -1,                                  // ResTd(未使用）
+        DISPMENU(dmToolMenu | dmHotKeyMenu), // DispMenu
+        0,                                   // TimerInterval[msec] 0で使用しない
+        0                                    // TimerCounter（未使用）
     },
 };
 
