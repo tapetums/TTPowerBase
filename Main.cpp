@@ -30,6 +30,7 @@ enum CMD : INT32
     CMD_SHUTDOWN,
     CMD_REBBOT,
     CMD_LOGOFF,
+    CMD_LOCK,
     CMD_SLEEP,
     CMD_HIBERNATE,
     CMD_COUNT
@@ -72,6 +73,16 @@ PLUGIN_COMMAND_INFO g_cmd_info[] =
         TEXT("Sign out"),                    // コマンド名（英名）
         TEXT("サインアウト"),                // コマンド説明（日本語）
         CMD_LOGOFF,                          // コマンドID
+        0,                                   // Attr（未使用）
+        -1,                                  // ResTd(未使用）
+        DISPMENU(dmToolMenu | dmHotKeyMenu), // DispMenu
+        0,                                   // TimerInterval[msec] 0で使用しない
+        0                                    // TimerCounter（未使用）
+    },
+    {
+        TEXT("Lock"),                        // コマンド名（英名）
+        TEXT("ロック"),                      // コマンド説明（日本語）
+        CMD_LOCK,                            // コマンドID
         0,                                   // Attr（未使用）
         -1,                                  // ResTd(未使用）
         DISPMENU(dmToolMenu | dmHotKeyMenu), // DispMenu
@@ -182,7 +193,7 @@ BOOL WINAPI Execute(INT32 CmdId, HWND hwnd)
 {
     ::SetForegroundWindow(hwnd);
 
-    INT_PTR ret;
+    INT_PTR ret { IDYES };
 
     switch ( CmdId )
     {
@@ -216,6 +227,13 @@ BOOL WINAPI Execute(INT32 CmdId, HWND hwnd)
             if ( ret != IDYES ) { return FALSE; }
 
             return ::ExitWindowsEx(EWX_LOGOFF, 0);
+        }
+        case CMD_LOCK:
+        {
+            ret = ::MessageBox(nullptr, TEXT("ロックしますか？"), PLUGIN_NAME, MB_YESNO);
+            if ( ret != IDYES ) { return FALSE; }
+
+            return ::LockWorkStation();
         }
         case CMD_SLEEP:
         {
