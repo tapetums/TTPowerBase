@@ -14,8 +14,8 @@ LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
 //
 
 1 VERSIONINFO
- FILEVERSION 0,2,0,0
- PRODUCTVERSION 0,2,0,0
+ FILEVERSION 0,3,0,0
+ PRODUCTVERSION 0,3,0,0
  FILEFLAGSMASK 0x0L
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -33,12 +33,12 @@ BEGIN
             VALUE "Comments", "TTPowerBase"
             VALUE "CompanyName", "CubeMelon Software"
             VALUE "FileDescription", "Power management plugin for TTBase"
-            VALUE "FileVersion", "0.2.0.0"
+            VALUE "FileVersion", "0.3.0.0"
             VALUE "InternalName", "TTPowerBase"
             VALUE "LegalCopyright", "Copyright (C) tapetums 2016"
             VALUE "OriginalFilename", "TTPowerBase"
             VALUE "ProductName", "TTPowerBase"
-            VALUE "ProductVersion", "0.2.0.0"
+            VALUE "ProductVersion", "0.3.0.0"
         END
     END
     BLOCK "VarFileInfo"
