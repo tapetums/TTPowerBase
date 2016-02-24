@@ -11,6 +11,7 @@
 #include "Plugin.hpp"
 #include "MessageDef.hpp"
 #include "Utility.hpp"
+#include "Settings.hpp"
 
 #include "Main.hpp"
 
@@ -21,6 +22,8 @@
 //---------------------------------------------------------------------------//
 
 HINSTANCE g_hInst { nullptr };
+
+Settings* settings { nullptr };
 
 //---------------------------------------------------------------------------//
 
@@ -176,6 +179,8 @@ bool EnableShutDown()
 // TTBEvent_Init() の内部実装
 BOOL WINAPI Init()
 {
+    if ( nullptr == settings ) { settings = new Settings; }
+
     return TRUE;
 }
 
@@ -184,6 +189,7 @@ BOOL WINAPI Init()
 // TTBEvent_Unload() の内部実装
 void WINAPI Unload()
 {
+    if ( settings ) { delete settings; settings = nullptr; }
 }
 
 //---------------------------------------------------------------------------//
@@ -191,6 +197,8 @@ void WINAPI Unload()
 // TTBEvent_Execute() の内部実装
 BOOL WINAPI Execute(INT32 CmdId, HWND hwnd)
 {
+    if ( nullptr == settings ) { return FALSE; }
+
     ::SetForegroundWindow(hwnd);
 
     INT_PTR ret { IDYES };
@@ -199,53 +207,63 @@ BOOL WINAPI Execute(INT32 CmdId, HWND hwnd)
     {
         case CMD_SHUTDOWN:
         {
-            ret = ::MessageBox(nullptr, TEXT("シャットダウンしますか？"), PLUGIN_NAME, MB_YESNO);
-            if ( ret != IDYES ) { return FALSE; }
-
-            if ( ! EnableShutDown() )
+            if ( settings->ComfirmAll || settings->ComfirmShutdown )
             {
-                return FALSE;
+                ret = ::MessageBox(nullptr, TEXT("シャットダウンしますか？"), PLUGIN_NAME, MB_YESNO);
+                if ( ret != IDYES ) { return FALSE; }
             }
 
+            if ( ! EnableShutDown() ) { return FALSE; }
             return ::ExitWindowsEx(EWX_SHUTDOWN, 0);
         }
         case CMD_REBBOT:
         {
-            ret = ::MessageBox(nullptr, TEXT("再起動しますか？"), PLUGIN_NAME, MB_YESNO);
-            if ( ret != IDYES ) { return FALSE; }
-
-            if ( ! EnableShutDown() )
+            if ( settings->ComfirmAll || settings->ComfirmReboot )
             {
-                return FALSE;
+                ret = ::MessageBox(nullptr, TEXT("再起動しますか？"), PLUGIN_NAME, MB_YESNO);
+                if ( ret != IDYES ) { return FALSE; }
             }
 
+            if ( ! EnableShutDown() ) { return FALSE; }
             return ::ExitWindowsEx(EWX_REBOOT, 0);
         }
         case CMD_LOGOFF:
         {
-            ret = ::MessageBox(nullptr, TEXT("サインアウトしますか？"), PLUGIN_NAME, MB_YESNO);
-            if ( ret != IDYES ) { return FALSE; }
+            if ( settings->ComfirmAll || settings->ComfirmLogOff )
+            {
+                ret = ::MessageBox(nullptr, TEXT("サインアウトしますか？"), PLUGIN_NAME, MB_YESNO);
+                if ( ret != IDYES ) { return FALSE; }
+            }
 
             return ::ExitWindowsEx(EWX_LOGOFF, 0);
         }
         case CMD_LOCK:
         {
-            ret = ::MessageBox(nullptr, TEXT("ロックしますか？"), PLUGIN_NAME, MB_YESNO);
-            if ( ret != IDYES ) { return FALSE; }
+            if ( settings->ComfirmAll || settings->ComfirmLock )
+            {
+                ret = ::MessageBox(nullptr, TEXT("ロックしますか？"), PLUGIN_NAME, MB_YESNO);
+                if ( ret != IDYES ) { return FALSE; }
+            }
 
             return ::LockWorkStation();
         }
         case CMD_SLEEP:
         {
-            ret = ::MessageBox(nullptr, TEXT("スリープしますか？"), PLUGIN_NAME, MB_YESNO);
-            if ( ret != IDYES ) { return FALSE; }
+            if ( settings->ComfirmAll || settings->ComfirmSleep )
+            {
+                ret = ::MessageBox(nullptr, TEXT("スリープしますか？"), PLUGIN_NAME, MB_YESNO);
+                if ( ret != IDYES ) { return FALSE; }
+            }
 
             return ::SetSuspendState(FALSE, FALSE, FALSE);
         }
         case CMD_HIBERNATE:
         {
-            ret = ::MessageBox(nullptr, TEXT("休止状態にしますか？"), PLUGIN_NAME, MB_YESNO);
-            if ( ret != IDYES ) { return FALSE; }
+            if ( settings->ComfirmAll || settings->ComfirmHibernate )
+            {
+                ret = ::MessageBox(nullptr, TEXT("休止状態にしますか？"), PLUGIN_NAME, MB_YESNO);
+                if ( ret != IDYES ) { return FALSE; }
+            }
 
             return ::SetSuspendState(TRUE, FALSE, FALSE);
         }

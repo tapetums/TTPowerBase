@@ -304,6 +304,7 @@
     <ClInclude Include="MessageDef.hpp" />
     <ClInclude Include="Plugin.hpp" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="Settings.hpp" />
     <ClInclude Include="Utility.hpp" />
   </ItemGroup>
   <ItemGroup>
